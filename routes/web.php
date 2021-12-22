@@ -22,3 +22,4 @@ Route::get('/shop', [ProductController::class, 'index'])->name('products');
 Route::get('/shop/{id}', [ProductController::class, 'show'])->name('product');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
