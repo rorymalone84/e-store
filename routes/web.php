@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PagesController::class, 'index'])->name('home');
 
-Route::get('/products', [ProductsController::class, 'index'])->name('products');
-Route::get('/products/{id}', [ProductsController::class, 'show'])->name('product');
+Route::get('/shop', [ProductController::class, 'index'])->name('products');
+Route::get('/shop/{id}', [ProductController::class, 'show'])->name('product');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
