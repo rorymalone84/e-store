@@ -30,7 +30,19 @@
                         <th 
                             scope="col" 
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Size
+                        </th>
+
+                        <th 
+                            scope="col" 
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Quantity
+                        </th>
+
+                        <th 
+                            scope="col" 
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            shipping
                         </th>
                         
                         <th 
@@ -74,27 +86,37 @@
                                         £ {{$value['price']}}
                                     </span>
                                 </td>
+
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span 
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-amber-100 text-green-800">
+                                        {{$value['sizes']}}
+                                    </span>
+                                </td>
     
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <select name="quantity" id="quantity" value="{{$value['quantity']}}">">
-                                        @for ($i = 1; $i <= 10; $i++)
-                                            <option value="{{ $i }}">
-                                                {{ $i }}
-                                            </option>
-                                        @endfor
-                                    </select>
+                                    <form action="{{ route('update.quantity', $key) }}" method="POST">
+                                        @csrf
+                                        <select name="quantity" id="quantity"  onchange="this.form.submit()">
+                                            @for ($i = 1; $i <= 10; $i++)
+                                                <option value="{{ $i }}" {{ $value['quantity'] == $i ? 'selected' : ''}}>
+                                                    {{ $i }} 
+                                                </option>
+                                            @endfor
+                                        </select>
+                                    </form>
                                 </td>
                                 
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                   <div class="text-sm text-gray-900"> </div>
+                                   <div class="text-sm text-gray-900"> {{$value['shipping']}}</div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900"></div>
+                                    <div class="text-sm text-gray-900">{{$value['price'] * $value['quantity']}} </div>
                                  </td>
     
                                 <td class="px-6 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="#" role="button" class="text-red-600 hover:text-red-900">Delete</a>
+                                    <a href="{{route('remove.product', $key)}}" role="button" class="text-red-600 hover:text-red-900">Delete</a>
                                 </td>
                             </tr>
                         </tbody>                            

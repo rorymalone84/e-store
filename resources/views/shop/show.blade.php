@@ -36,8 +36,15 @@
                 Shipping: <span class="text-red-500">£{{$product->shipping}}</span>
             </p>
             
-            <p class="font-thin text-s text-black pb-8">
-                Size Available : {{$product->sizes}}
+            <p class="text-gray-800 text-thin text-l leading-6 pb-12">
+                Select size from available
+                <select name="sizes" value="">">
+                    @for ($i = 1; $i <= 10; $i++)
+                        <option value="{{ $i }}">
+                            {{ $i }}
+                        </option>
+                    @endfor
+                </select>
             </p>            
 
             <p class="text-gray-800 text-thin text-l leading-6 pb-12">
